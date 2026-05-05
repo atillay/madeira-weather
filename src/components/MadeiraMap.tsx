@@ -156,6 +156,13 @@ export const MadeiraMap: React.FC<MadeiraMapProps> = ({
       <MapContainer 
         center={[32.75, -16.95]} 
         zoom={10} 
+        minZoom={10}
+        maxZoom={13}
+        maxBounds={[
+          [31.85, -17.85], // South West
+          [33.65, -16.05]  // North East
+        ]}
+        maxBoundsViscosity={1.0}
         style={{ height: '100%', width: '100%' }}
         scrollWheelZoom={true}
       >
