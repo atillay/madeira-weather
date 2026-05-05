@@ -95,8 +95,8 @@ export default function App() {
       <header className="bg-blue-600 border-b border-blue-700 shrink-0 z-50">
         <div className="w-full px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="bg-white/20 p-2 rounded-lg backdrop-blur-sm">
-              <Cloud className="w-5 h-5 text-white" />
+            <div className="flex flex-shrink-0 items-center justify-center w-10 h-10">
+              <img src="/favicon.png" alt="Madeira Weather" className="w-full h-full object-contain drop-shadow-sm" />
             </div>
             <div className="flex flex-col">
               <h1 className="text-lg font-bold tracking-tight text-white leading-tight">Madeira weather</h1>
@@ -220,7 +220,7 @@ export default function App() {
                       }}
                     />
                     
-                    <div className="absolute top-10 left-0 w-full flex justify-between px-1 pointer-events-none">
+                    <div className="absolute top-[43px] left-0 w-full flex justify-between px-1 pointer-events-none">
                       {Array.from({ length: (maxTimelineHours / (maxTimelineHours === 24 ? 6 : maxTimelineHours === 48 ? 12 : 24)) + 1 }, (_, i) => i * (maxTimelineHours === 24 ? 6 : maxTimelineHours === 48 ? 12 : 24)).map((mark) => (
                         <span key={mark} className="text-[10px] font-bold text-slate-300">
                           {mark === 0 ? 'Now' : `+${mark}h`}
