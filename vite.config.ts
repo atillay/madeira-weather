@@ -15,7 +15,7 @@ export default defineConfig(({mode}) => {
         registerType: 'autoUpdate',
         injectRegister: 'auto',
         workbox: {
-          globPatterns: ['**/*.{ico,png,svg,jpg,jpeg}'], // Only precache images/icons.
+          globPatterns: ['**/*.{js,css,html,ico,png,svg,jpg,jpeg}'], // Precache app shell and images/icons.
           runtimeCaching: [
             {
               urlPattern: /^https?:\/\/[a-z]\.tile\.openstreetmap\.org\/.*/i,

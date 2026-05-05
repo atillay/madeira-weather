@@ -1,5 +1,5 @@
 {
-  "name": "Madeira Sky",
+  "name": "Madeira Weather",
   "description": "Precise hourly weather forecasts for every town in Madeira using the Official IPMA API. Features an interactive map and detailed weather pictograms.",
   "requestFramePermissions": ["geolocation"],
   "majorCapabilities": []
