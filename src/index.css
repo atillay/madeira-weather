@@ -6,7 +6,8 @@
   --font-mono: 'JetBrains Mono', 'Roboto Mono', monospace;
 }
 
-body {
+html, body {
+  overscroll-behavior-y: none;
   background-color: #f8fafc;
   color: #0f172a;
 }

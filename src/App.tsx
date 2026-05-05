@@ -90,7 +90,7 @@ export default function App() {
   }, [selectedTown]);
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-100">
+    <div className="min-h-[100dvh] flex flex-col bg-white text-slate-900 font-sans selection:bg-blue-100">
       {/* Top Header */}
       <header className="bg-blue-600 border-b border-blue-700 shrink-0 z-50">
         <div className="w-full px-4 h-16 flex items-center justify-between">
@@ -110,7 +110,7 @@ export default function App() {
 
       <main className="flex-1 flex flex-col lg:flex-row items-stretch w-full">
           {/* Map Section - Left side on desktop */}
-          <div className="w-full lg:w-1/2 h-[50vh] lg:h-auto lg:min-h-[calc(100vh-64px)] relative z-0 border-b lg:border-b-0 lg:border-r border-slate-200">
+          <div className="w-full lg:w-1/2 h-[50dvh] lg:h-auto lg:min-h-[calc(100dvh-64px)] relative z-0 border-b lg:border-b-0 lg:border-r border-slate-200">
             <MadeiraMap 
               onTownSelect={setSelectedTown} 
               selectedTownId={selectedTown.id} 
