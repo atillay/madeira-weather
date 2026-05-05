@@ -6,7 +6,6 @@
 import React, { useRef, useEffect } from 'react';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { format, parseISO } from 'date-fns';
-import { motion } from 'motion/react';
 import { HourlyForecast, Town } from '../types';
 import { TOWNS } from '../services/ipmaService';
 import { WeatherIcon } from './WeatherIcon';
@@ -39,11 +38,7 @@ export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ town, forecast
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center h-full min-h-[400px] gap-6 p-8">
-        <motion.div
-           animate={{ rotate: 360 }}
-           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-           className="w-10 h-10 border-4 border-slate-100 border-t-blue-600 rounded-full"
-        />
+        <div className="w-10 h-10 border-4 border-slate-100 border-t-blue-600 rounded-full animate-spin" />
         <p className="text-slate-400 font-medium animate-pulse">Loading forecast...</p>
       </div>
     );
