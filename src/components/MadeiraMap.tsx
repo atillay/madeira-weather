@@ -186,7 +186,7 @@ export const MadeiraMap: React.FC<MadeiraMapProps> = ({
               if (!f.time) return false;
               const fTime = parseISO(f.time).getTime();
               return fTime >= targetTime - gracePeriod;
-            }) || forecasts[0];
+            }) || forecasts[forecasts.length - 1];
           }
 
           const weatherId = currentForecast?.weatherType ?? null;
