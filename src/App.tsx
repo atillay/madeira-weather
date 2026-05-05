@@ -5,7 +5,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { format, parseISO } from 'date-fns';
-import { motion, AnimatePresence } from 'motion/react';
 import { Cloud, Map as MapIcon, Info, Github, ExternalLink, ChevronDown, Navigation, Clock } from 'lucide-react';
 import { MadeiraMap } from './components/MadeiraMap';
 import { ForecastDetails } from './components/ForecastDetails';
@@ -232,25 +231,16 @@ export default function App() {
                 </div>
 
                 {/* Forecast Details */}
-                <AnimatePresence mode="wait">
-                  <motion.div
-                    key={selectedTown.id}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2 }}
-                    className="flex flex-col flex-1 h-full w-full"
-                  >
-                    <ForecastDetails 
-                      town={selectedTown} 
-                      forecasts={forecasts} 
-                      isLoading={loading} 
-                      selectedHourOffset={hourOffset}
-                      maxHours={maxTimelineHours}
-                      onTownSelect={setSelectedTown}
-                    />
-                  </motion.div>
-                </AnimatePresence>
+                <div className="flex flex-col flex-1 h-full w-full">
+                  <ForecastDetails 
+                    town={selectedTown} 
+                    forecasts={forecasts} 
+                    isLoading={loading} 
+                    selectedHourOffset={hourOffset}
+                    maxHours={maxTimelineHours}
+                    onTownSelect={setSelectedTown}
+                  />
+                </div>
               </div>
             </div>
       </main>

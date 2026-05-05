@@ -94,7 +94,7 @@ export const ForecastDetails: React.FC<ForecastDetailsProps> = ({ town, forecast
   });
 
   return (
-    <div className="flex flex-col flex-1 animate-in fade-in slide-in-from-bottom-2 duration-500 bg-white">
+    <div className="flex flex-col flex-1 bg-white">
       {/* Current Selection Header */}
       <div className="p-6 lg:p-8 pb-4 bg-white">
         <div className="flex justify-between items-start">
