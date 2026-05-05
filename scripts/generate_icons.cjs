@@ -52,13 +52,13 @@ async function generate() {
   await sharp(Buffer.from(svgCode))
     .resize(192, 192)
     .png()
-    .toFile(path.join(publicDir, 'pwa-192x192.png'));
+    .toFile(path.join(publicDir, 'pwa-192x192-v2.png'));
 
   // Favicon 512x512
   await sharp(Buffer.from(svgCode))
     .resize(512, 512)
     .png()
-    .toFile(path.join(publicDir, 'pwa-512x512.png'));
+    .toFile(path.join(publicDir, 'pwa-512x512-v2.png'));
 
   // SVG version maskable
   fs.writeFileSync(path.join(publicDir, 'pwa-icon.svg'), svgCode);
