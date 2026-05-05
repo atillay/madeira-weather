@@ -11,6 +11,7 @@ import { MadeiraMap } from './components/MadeiraMap';
 import { ForecastDetails } from './components/ForecastDetails';
 import { TOWNS, getHourlyForecast } from './services/ipmaService';
 import { Town, HourlyForecast } from './types';
+import iconSrc from './assets/icon.svg';
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
@@ -96,7 +97,7 @@ export default function App() {
         <div className="w-full px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-3">
             <div className="flex flex-shrink-0 items-center justify-center w-10 h-10">
-              <img src={`${import.meta.env.BASE_URL}favicon.png`} alt="Madeira Weather" className="w-full h-full object-contain drop-shadow-sm" />
+              <img src={iconSrc} alt="Madeira Weather" className="w-full h-full object-contain drop-shadow-sm" />
             </div>
             <div className="flex flex-col">
               <h1 className="text-lg font-bold tracking-tight text-white leading-tight">Madeira weather</h1>
