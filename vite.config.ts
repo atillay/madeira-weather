@@ -2,12 +2,46 @@ import tailwindcss from '@tailwindcss/vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 import {defineConfig, loadEnv} from 'vite';
+import { VitePWA } from 'vite-plugin-pwa';
 
 export default defineConfig(({mode}) => {
   const env = loadEnv(mode, '.', '');
   return {
     base: './',
-    plugins: [react(), tailwindcss()],
+    plugins: [
+      react(), 
+      tailwindcss(),
+      VitePWA({
+        registerType: 'autoUpdate',
+        injectRegister: 'auto',
+        workbox: {
+          globPatterns: ['**/*.{ico,png,svg,jpg,jpeg}'], // Only precache images/icons.
+          runtimeCaching: [
+            {
+              urlPattern: /^https?:\/\/[a-z]\.tile\.openstreetmap\.org\/.*/i,
+              handler: 'CacheFirst',
+              options: {
+                cacheName: 'leaflet-tiles',
+                expiration: {
+                  maxEntries: 500,
+                  maxAgeSeconds: 30 * 24 * 60 * 60, // 30 days
+                },
+                cacheableResponse: {
+                  statuses: [0, 200]
+                }
+              }
+            }
+          ]
+        },
+        manifest: {
+          name: 'Madeira Weather',
+          short_name: 'MadeiraWeather',
+          description: 'Weather application for Madeira Island',
+          theme_color: '#3b82f6',
+          icons: []
+        }
+      })
+    ],
     define: {
       'process.env.GEMINI_API_KEY': JSON.stringify(env.GEMINI_API_KEY),
     },
