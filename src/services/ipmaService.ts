@@ -6,6 +6,38 @@
 import { HourlyForecast, Town, WeatherType, DailyForecast } from '../types';
 
 const BASE_URL = 'https://api.ipma.pt/open-data';
+const CACHE_DURATION_MS = 60 * 60 * 1000; // 1 hour
+
+async function fetchWithCache<T>(url: string, cacheKey: string): Promise<T> {
+  try {
+    const cachedItem = localStorage.getItem(cacheKey);
+    if (cachedItem) {
+      const parsed: { data: T; timestamp: number } = JSON.parse(cachedItem);
+      if (Date.now() - parsed.timestamp < CACHE_DURATION_MS) {
+        return parsed.data;
+      }
+    }
+  } catch (e) {
+    console.warn('Error reading from cache', e);
+  }
+
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(`Failed to fetch: ${response.statusText}`);
+  }
+  const data = await response.json();
+
+  try {
+    localStorage.setItem(cacheKey, JSON.stringify({
+      data,
+      timestamp: Date.now(),
+    }));
+  } catch (e) {
+    console.warn('Error writing to cache', e);
+  }
+
+  return data;
+}
 
 export const TOWNS: Town[] = [
   { name: 'Areeiro', id: 2310921, lat: 32.7354, lng: -16.9286 },
@@ -30,25 +62,18 @@ export const TOWNS: Town[] = [
 ];
 
 export async function getWeatherTypes(): Promise<WeatherType[]> {
-  const response = await fetch(`${BASE_URL}/weather-type-classe.json`);
-  const data = await response.json();
+  const data = await fetchWithCache<any>(`${BASE_URL}/weather-type-classe.json`, 'ipma-weather-types');
   return data.data;
 }
 
 export async function getDailyForecast(cityId: number): Promise<DailyForecast[]> {
-  const response = await fetch(`${BASE_URL}/forecast/meteorology/cities/daily/${cityId}.json`);
-  const data = await response.json();
+  const data = await fetchWithCache<any>(`${BASE_URL}/forecast/meteorology/cities/daily/${cityId}.json`, `ipma-daily-${cityId}`);
   return data.data;
 }
 
 export async function getHourlyForecast(cityId: number): Promise<HourlyForecast[]> {
   try {
-    const response = await fetch(`https://api.ipma.pt/public-data/forecast/aggregate/${cityId}.json`);
-    if (!response.ok) {
-      throw new Error(`Failed to fetch: ${response.statusText}`);
-    }
-    
-    const data = await response.json();
+    const data = await fetchWithCache<any>(`https://api.ipma.pt/public-data/forecast/aggregate/${cityId}.json`, `ipma-hourly-${cityId}`);
     
     // Filter out only the hourly forecasts (idPeriodo === 1)
     const hourlyData = data.filter((item: any) => item.idPeriodo === 1);

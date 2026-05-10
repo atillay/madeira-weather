@@ -99,10 +99,37 @@ export default function App() {
               <img src={iconSrc} alt="Madeira Weather" className="w-full h-full object-contain drop-shadow-sm" />
             </div>
             <div className="flex flex-col">
-              <h1 className="text-lg font-bold tracking-tight text-white leading-tight">Madeira weather</h1>
+              <h1 className="text-lg font-bold tracking-tight text-white leading-tight">Madeira Weather (IPMA Forecast)</h1>
               <span className="text-[10px] text-blue-200 uppercase tracking-wider font-semibold leading-tight">
                 Data from <a href="https://api.ipma.pt/" target="_blank" rel="noopener noreferrer" className="hover:text-white underline decoration-blue-400/50 underline-offset-2">IPMA</a>
               </span>
+            </div>
+            
+            {/* SEO Hidden Content */}
+            <div className="sr-only">
+              <p>Get reliable hourly and daily Madeira weather forecasts utilizing official IPMA data. Track temperatures, wind, and rain in real-time across the island.</p>
+              <h2>Cities supported in Madeira:</h2>
+              <ul>
+                <li>Funchal</li>
+                <li>Calheta</li>
+                <li>Santana</li>
+                <li>Câmara de Lobos</li>
+                <li>Machico</li>
+                <li>Ponta do Sol</li>
+                <li>Porto Moniz</li>
+                <li>Porto Santo</li>
+                <li>Ribeira Brava</li>
+                <li>Santa Cruz</li>
+                <li>São Vicente</li>
+                <li>Areeiro</li>
+                <li>Bica da Cana</li>
+                <li>Caniçal</li>
+                <li>Funchal/Lido</li>
+                <li>Lugar de Baixo</li>
+                <li>Ponta do Pargo</li>
+                <li>Santa Cruz - Aer.</li>
+                <li>Santo da Serra</li>
+              </ul>
             </div>
           </div>
         </div>
@@ -241,6 +268,10 @@ export default function App() {
                     onTownSelect={setSelectedTown}
                   />
                 </div>
+
+                <footer className="shrink-0 py-3 text-center text-xs text-slate-400 bg-white border-t border-slate-100 mt-auto">
+                  Built with ❤️ by <a href="https://github.com/atillay/madeira-weather" target="_blank" rel="noopener noreferrer" className="font-medium hover:text-blue-500 underline decoration-slate-200 underline-offset-2 transition-colors">atillay</a>
+                </footer>
               </div>
             </div>
       </main>
